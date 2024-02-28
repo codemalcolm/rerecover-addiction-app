@@ -1,7 +1,9 @@
+import Navbar from "./components/Navigation/Navbar";
+
 function App() {
 	return (
 		<>
-			<div className="">SSS</div>
+      <Navbar/>
 		</>
 	);
 }
