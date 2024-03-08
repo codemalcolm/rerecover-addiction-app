@@ -4,7 +4,7 @@ import CreateHabitBtn from "./Navigation/CreateHabitBtn";
 
 const Hero = () => {
 	return (
-		<div className="mx-6 mt-4 flex justify-center">
+		<div className="mx-6 mt-4 flex-row justify-center">
 			<CreateHabit />
 			<CreateHabitBtn />
 		</div>

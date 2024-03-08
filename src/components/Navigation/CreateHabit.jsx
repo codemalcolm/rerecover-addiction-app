@@ -1,15 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileImage } from "@fortawesome/free-regular-svg-icons";
+import AddPhotoAlternateRoundedIcon from '@mui/icons-material/AddPhotoAlternateRounded';
 
 const CreateHabit = () => {
 	return (
-		<div className="mt-16 border-2 border-black flex-row items-center w-80 rounded-xl px-8 hidden">
+		<div className="mt-16 border-2 border-black flex-row items-center w-80 rounded-xl px-8 ">
 			<div className="relative flex justify-center items-center">
 				<div className="border-2 border-black w-28 h-28 rounded-full absolute bg-white flex items-center justify-center p-2">
-					<div className="text-5xl shadow-[rgba(7,_65,_210,_0.1)_0px_10px_30px]">
-						<FontAwesomeIcon icon={faFileImage} />
-					</div>
+					<AddPhotoAlternateRoundedIcon
+						sx={{
+							width:40,
+							height:40,
+						}}
+					/>
 				</div>
 			</div>
 			<div className="w-full m-auto mt-16 text-center">
