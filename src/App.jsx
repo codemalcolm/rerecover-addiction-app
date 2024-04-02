@@ -1,7 +1,7 @@
 import { Route, Router, Routes } from "react-router-dom"
 import HeroPage from "./pages/HeroPage"
 import PageLayout from "./Layouts/PageLayout"
-import AuthPage from "./pages/AuthPage"
+import AuthPage from "./pages/AuthPage/AuthPage"
 
 function App() {
   return (
