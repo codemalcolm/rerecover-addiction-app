@@ -1,4 +1,4 @@
-import { Button, Flex, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { Button, Flex, Input, Textarea, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa6";
 import {
 	Modal,
@@ -10,6 +10,14 @@ import {
 	ModalCloseButton,
 } from "@chakra-ui/react";
 import { SlPicture } from "react-icons/sl";
+import { modalAnatomy as parts } from '@chakra-ui/anatomy'
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
+} from '@chakra-ui/styled-system'
+
+
+
 const Habits = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
@@ -34,7 +42,7 @@ const Habits = () => {
 				</Tooltip>
 			</Flex>
 
-			<Modal isOpen={isOpen} onClose={onClose}>
+			<Modal isOpen={isOpen} onClose={onClose} size={"md"}>
 				<ModalOverlay />
 				<ModalContent>
                 <Flex position={"relative"} justifyContent={"center"} alignItems={"center"}>
@@ -47,11 +55,13 @@ const Habits = () => {
                     </Flex>
                 </Flex>
 					
-					<ModalHeader>Modal Title</ModalHeader>
+					<ModalHeader>Create a habit</ModalHeader>
 					<ModalCloseButton />
-					<ModalBody>
-						sfnbaijnakjsbfijhasbfba skjhfbakjsnbfjklasnf fasjhvfhasbfkjbashb
-						fhasbfhabfhabsfkjajsf as fasfbvashbfhjkabfhabsfjbashfbahsbfjhaqbs
+					<ModalBody display={"flex"} justifyContent={"center"}>
+						<Flex width={"250px"} flexDirection={"column"} gap={4}>
+							<Input placeholder="Enter the name of your habit"></Input>
+							<Textarea placeholder='Enter the description of your habit max. 40 characters' />
+						</Flex>
 					</ModalBody>
 
 					<ModalFooter>
