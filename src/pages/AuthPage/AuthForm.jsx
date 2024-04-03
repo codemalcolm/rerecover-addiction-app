@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./SignUp";
 import { FcGoogle } from "react-icons/fc";
 import { Divider } from '@chakra-ui/react'
+import GoogleAuth from './GoogleAuth';
 
 const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -17,14 +18,7 @@ const AuthForm = () => {
                 </Flex>
 
                 <Flex justifyContent={"space-between"} alignItems={"center"} width={"205px"}>
-                    <Text>
-                        {isLogin ? "Login" : "Sign up"} with Google
-                    </Text>
-                    <FcGoogle style={{
-                        color: "black",
-                        width:"30px",
-                        height:"30px"
-                    }}/>
+                    <GoogleAuth isLogin={isLogin}/>
                 </Flex>
 
                 <Flex justifyContent={"space-between"}>
