@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-	apiKey:,
+	apiKey: import.meta.env.VITE_FIREBASE_apiKey,
 	authDomain: "rerecover-app.firebaseapp.com",
 	projectId: "rerecover-app",
 	storageBucket: "rerecover-app.appspot.com",

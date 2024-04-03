@@ -1,5 +1,6 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import AuthForm from "./AuthForm";
+import { Link } from "react-router-dom";
 
 const AuthPage = () => {
 	return (
@@ -13,7 +14,9 @@ const AuthPage = () => {
 				alignItems={"center"}
                 py={"16px"}
 			>
-               <Text textAlign={"center"} fontSize={"38px"}>ReRecover</Text>
+			<Link to='/'>
+				<Text textAlign={"center"} fontSize={"38px"}>ReRecover</Text>
+        	</Link>
                <AuthForm/>
 			</Flex>
             

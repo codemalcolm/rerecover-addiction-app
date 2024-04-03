@@ -36,14 +36,14 @@ const SignUp = () => {
 				size={"md"}
 				onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 			/>
-      <Input
-        placeholder="Password"
-        value={inputs.password}
-        type={showPassword ? "text" : "password"}
-        size={"md"}
-        onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-      />
-      <InputGroup>
+			<Input
+				placeholder="Password"
+				value={inputs.password}
+				type={showPassword ? "text" : "password"}
+				size={"md"}
+				onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+			/>
+      		<InputGroup>
 				<Input
 					placeholder="Confirm Password"
 					value={inputs.confirmPassword}
