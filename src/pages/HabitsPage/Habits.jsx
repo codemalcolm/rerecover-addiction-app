@@ -39,6 +39,7 @@ const Habits = () => {
 	const [emojiImageUrl, setEmojiImageUrl, ] = useState("");
 	const {handleCreateHabit, isLoading} = useCreateHabit();
 	const { isFetching, habits } = useGetUserHabits();
+
 	const [inputs, setInputs] = useState({
 		habitName:"",
 		habitDescription:"",

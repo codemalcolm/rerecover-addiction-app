@@ -6,10 +6,11 @@ import {
 	updateDoc,
 } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
-import useAuthStore from "../store/authStore";
+
 import useShowToast from "./useShowToast";
 import { useState } from "react";
 import useHabitStore from "../store/habitStore";
+import useAuthStore from "../store/authStore";
 
 const useCreateHabit = () => {
 	const showToast = useShowToast();

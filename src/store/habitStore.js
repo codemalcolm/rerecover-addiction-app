@@ -4,6 +4,7 @@ const useHabitStore = create((set) =>({
     habits:[],
     createHabit: (habit) => set(state => ({habits: [habit,...state.habits]})),
     setHabits: (habits) => set({habits}),
+    deleteHabit: (id) => set(state => ({habits: state.habits.filter(habit => habit.id !== id)})),
 }))
 
 export default useHabitStore;
