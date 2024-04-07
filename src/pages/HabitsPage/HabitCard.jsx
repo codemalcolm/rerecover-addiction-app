@@ -21,6 +21,7 @@ import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import useHabitStore from "../../store/habitStore";
+import useEditHabit from "../../hooks/useEditHabit";
 
 
 const HabitCard = ({ habit }) => {
@@ -30,9 +31,10 @@ const HabitCard = ({ habit }) => {
 	const [emojiImageUrl, setEmojiImageUrl, ] = useState("");
 	const [ isDeleting , setIsDeleting ] = useState(false)
 	const deleteHabit = useHabitStore((state) => state.deleteHabit)
+	const [isEditOn , setIsEditOn] = useState(false)
 
 	const authUser = useAuthStore((state) => state.user);
-
+	const {editHabit, isEditting } = useEditHabit();
 	const showToast = useShowToast();
 	// const {handleCreateHabit, isLoading} = useCreateHabit();
 	// const { isFetching, habits } = useGetUserHabits();
@@ -44,11 +46,13 @@ const HabitCard = ({ habit }) => {
 	})
 
 	const handleEmojiPick = (e) => {
-		setIsEmojiPicked(true);
 		let url = e.imageUrl
+
+		setIsEmojiPicked(true);
 		setIsPickerOpen(!isPickerOpen)
 		setEmojiImageUrl(url);
-		setInputs({ ...inputs, habitImageUrl: url })
+
+		setInputs({ ...inputs, habitImageUrl: emojiImageUrl })
 	};
 
 	const handleDeleteHabit = async() => {
@@ -75,6 +79,20 @@ const HabitCard = ({ habit }) => {
 		}
 	}
 
+	const handleEditHabit = async() => {
+		try {
+			await editHabit(inputs, habit)	
+			setInputs({
+				habitName:"",
+				habitDescription:"",
+				habitImageUrl:""
+			})
+			onClose();
+		} catch (error) {
+			console.error('Error caught in handleEditHabit:', error); // Log the entire error object
+			showToast("Error", `here ${error.message}`, "error");
+		}
+	}
 	return (
 		<>
 			<Box
@@ -102,6 +120,7 @@ const HabitCard = ({ habit }) => {
 						bg={"white"}
 						cursor={"pointer"}
 					>
+					{/* TODO update emoji state*/}
 						<Image src={habit.imageUrl} />
 					</Flex>
 				</Flex>
@@ -116,10 +135,11 @@ const HabitCard = ({ habit }) => {
             <Modal isOpen={isOpen} onClose={() => {
 				onClose()
 				isPickerOpen ? setIsPickerOpen(!isPickerOpen) : isPickerOpen
+				setIsEditOn(false)
 				}} size={"md"}>
 				<ModalOverlay />
 
-				<ModalContent>
+				<ModalContent rounded={"18px"} >
 
 					<Flex
 						position={"relative"}
@@ -163,25 +183,42 @@ const HabitCard = ({ habit }) => {
 									height:"25px"
 								}}/>
 							</Box>
-
-						<FaPen style={{
-								width: "20px",
-								height:"20px"
-							}}/>
+							<Box _hover={{color:"green"}} cursor={"pointer"}
+							color={isEditOn ? "green" : "black"}
+							onClick={() => setIsEditOn(!isEditOn)}>
+								<FaPen style={{
+										width: "20px",
+										height:"20px"
+									}}
+								/>
+							</Box>
 					</Flex>
 					{/* <ModalCloseButton /> */}
-					<ModalHeader>Create a habit</ModalHeader>
+
 					
 					<ModalBody display={"flex"} justifyContent={"center"}>
 						<Flex width={"250px"} flexDirection={"column"} gap={4}>
-							<Input placeholder={habit.habitName}
-								value={inputs.habitName}
+						{isEditOn 
+						? 
+						<>
+							<Input
+								value={inputs.habitName || habit.habitName}
 								onChange={(e) => setInputs({ ...inputs, habitName: e.target.value })}
+								isReadOnly={!isEditOn}
 							/>
-							<Textarea placeholder={habit.habitDescription}
-								value={inputs.habitDescription}
-								onChange={(e) =>setInputs({ ...inputs, habitDescription: e.target.value })}
+							<Textarea
+								value={inputs.habitDescription || habit.habitDescription}
+								onChange={(e) =>setInputs({ ...inputs, habitDescription: e.target.value})}
+								isReadOnly={!isEditOn}
 							/>
+						</>
+						:
+						<>
+							<Text fontSize={"32px"} textAlign={"center"}>{habit.habitName}</Text>
+							<Text fontSize={"20px"} textAlign={"center"}>{habit.habitDescription}</Text>
+						</>
+						}
+							
 						</Flex>
 					</ModalBody>
 
@@ -189,9 +226,9 @@ const HabitCard = ({ habit }) => {
 						<Button colorScheme="blue" mr={3}
 						onClick={() => {
 							onClose()
-							isPickerOpen ? setIsPickerOpen(!isPickerOpen) : isPickerOpen
+							handleEditHabit()
 							}}>
-							Submit
+							{isEditOn ? "Save" : "Submit"}
 						</Button>
 					</ModalFooter>
 				</ModalContent>
