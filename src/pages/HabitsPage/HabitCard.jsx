@@ -47,7 +47,6 @@ const HabitCard = ({ habit }) => {
 
 	const handleEmojiPick = (e) => {
 		let url = e.imageUrl
-
 		setIsEmojiPicked(true);
 		setIsPickerOpen(!isPickerOpen)
 		setEmojiImageUrl(url);
@@ -89,7 +88,6 @@ const HabitCard = ({ habit }) => {
 			})
 			onClose();
 		} catch (error) {
-			console.error('Error caught in handleEditHabit:', error); // Log the entire error object
 			showToast("Error", `here ${error.message}`, "error");
 		}
 	}
@@ -150,17 +148,17 @@ const HabitCard = ({ habit }) => {
 							border={"2px solid black"}
 							width={"112px"}
 							height={"112px"}
-							onClick={() => setIsPickerOpen(!isPickerOpen)}
+							onClick={isEditOn ? () => setIsPickerOpen(!isPickerOpen) : null}
 							rounded={"full"}
 							justifyContent={"center"}
 							alignItems={"center"}
 							position={"absolute"}
 							bg={"white"}
-							cursor={"pointer"}
+							cursor={isEditOn ? "pointer" : "normal"}
 						>
 							{<EmojiImage
 									imgURL={
-										habit.imageUrl
+										isEmojiPicked ? inputs.habitImageUrl : habit.imageUrl
 									}
 								/>
 							}
@@ -193,9 +191,7 @@ const HabitCard = ({ habit }) => {
 								/>
 							</Box>
 					</Flex>
-					{/* <ModalCloseButton /> */}
 
-					
 					<ModalBody display={"flex"} justifyContent={"center"}>
 						<Flex width={"250px"} flexDirection={"column"} gap={4}>
 						{isEditOn 
