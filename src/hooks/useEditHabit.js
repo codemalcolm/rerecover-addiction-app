@@ -28,6 +28,7 @@ const useEditHabit = () => {
 			await updateDoc(habitRef, editedHabit);
 			setHabit(editedHabit);
 			showToast("Success", "Habit updated successfully", "success");
+			
 		} catch (error) {
 			showToast("Error", error.message, "error");
 		} finally {

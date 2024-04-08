@@ -53,6 +53,7 @@ const Habits = () => {
 		setEmojiImageUrl(url);
 		setInputs({ ...inputs, habitImageUrl: url })
 	};
+
 	useEffect(()=>{
 		setIsEmojiPicked(false)
 		setInputs({
@@ -60,6 +61,7 @@ const Habits = () => {
 		habitDescription:"",
 		habitImageUrl:""})
 	} ,[isOpen])
+	
 	return (
 		<>
 			<Flex justifyContent={"end"} mt={5}>

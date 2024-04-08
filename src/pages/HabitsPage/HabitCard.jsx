@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Image, Input, Text, Textarea, useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Modal,
 	ModalOverlay,
@@ -47,11 +47,12 @@ const HabitCard = ({ habit }) => {
 
 	const handleEmojiPick = (e) => {
 		let url = e.imageUrl
-		setIsEmojiPicked(true);
-		setIsPickerOpen(!isPickerOpen)
-		setEmojiImageUrl(url);
 
-		setInputs({ ...inputs, habitImageUrl: emojiImageUrl })
+		setIsEmojiPicked(true);
+
+		setIsPickerOpen(!isPickerOpen)
+
+		setInputs({ ...inputs, habitImageUrl: url })
 	};
 
 	const handleDeleteHabit = async() => {
@@ -67,7 +68,6 @@ const HabitCard = ({ habit }) => {
 				habits: arrayRemove(habit.id)
 			})
 
-			
             deleteHabit(habit.id)
 
             showToast("Success", "Habit deleted successfully", "success")
@@ -80,17 +80,28 @@ const HabitCard = ({ habit }) => {
 
 	const handleEditHabit = async() => {
 		try {
-			await editHabit(inputs, habit)	
+			await editHabit(inputs, habit)
 			setInputs({
 				habitName:"",
 				habitDescription:"",
 				habitImageUrl:""
 			})
+
 			onClose();
 		} catch (error) {
-			showToast("Error", `here ${error.message}`, "error");
+			showToast("Error", `${error.message}`, "error");
 		}
 	}
+
+	useEffect(()=>{
+		setIsEmojiPicked(false)
+		setIsEditOn(false)
+		setInputs({
+		habitName:"",
+		habitDescription:"",
+		habitImageUrl:""})
+	} ,[isOpen, onClose])
+
 	return (
 		<>
 			<Box
@@ -132,8 +143,7 @@ const HabitCard = ({ habit }) => {
 
             <Modal isOpen={isOpen} onClose={() => {
 				onClose()
-				isPickerOpen ? setIsPickerOpen(!isPickerOpen) : isPickerOpen
-				setIsEditOn(false)
+				{isPickerOpen ? setIsPickerOpen(false) : isPickerOpen}
 				}} size={"md"}>
 				<ModalOverlay />
 
@@ -156,12 +166,11 @@ const HabitCard = ({ habit }) => {
 							bg={"white"}
 							cursor={isEditOn ? "pointer" : "normal"}
 						>
-							{<EmojiImage
-									imgURL={
-										isEmojiPicked ? inputs.habitImageUrl : habit.imageUrl
-									}
-								/>
-							}
+							<EmojiImage
+								imgURL={
+									isEmojiPicked ? inputs.habitImageUrl : habit.imageUrl
+								}
+							/>
 						</Flex>
 						<Flex position={"fixed"} top={"18%"} left={"7%"} zIndex={9999}>
 							<EmojiPicker
