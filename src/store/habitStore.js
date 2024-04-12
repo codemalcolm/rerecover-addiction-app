@@ -8,6 +8,7 @@ const useHabitStore = create((set) =>({
         habits: state.habits.map(habit => habit.id === editedHabit.id ? editedHabit : habit)
     })),
     deleteHabit: (id) => set(state => ({habits: state.habits.filter(habit => habit.id !== id)})),
+    setCurrentHabit: (habit) => set({ currentHabit: habit })
 }))
 
 export default useHabitStore;

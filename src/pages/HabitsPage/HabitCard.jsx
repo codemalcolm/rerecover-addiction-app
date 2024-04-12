@@ -22,6 +22,7 @@ import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import useHabitStore from "../../store/habitStore";
 import useEditHabit from "../../hooks/useEditHabit";
+import HabitCalendar from "../../components/HabitCalendar";
 
 
 const HabitCard = ({ habit }) => {
@@ -30,10 +31,13 @@ const HabitCard = ({ habit }) => {
 	const [isEmojiPicked, setIsEmojiPicked] = useState(false);
 	const [emojiImageUrl, setEmojiImageUrl, ] = useState("");
 	const [ isDeleting , setIsDeleting ] = useState(false)
+
 	const deleteHabit = useHabitStore((state) => state.deleteHabit)
+	const setCurrentHabit = useHabitStore(state => state.setCurrentHabit);
+	const authUser = useAuthStore((state) => state.user);
+
 	const [isEditOn , setIsEditOn] = useState(false)
 
-	const authUser = useAuthStore((state) => state.user);
 	const {editHabit, isEditting } = useEditHabit();
 	const showToast = useShowToast();
 	// const {handleCreateHabit, isLoading} = useCreateHabit();
@@ -102,6 +106,10 @@ const HabitCard = ({ habit }) => {
 		habitImageUrl:""})
 	} ,[isOpen, onClose])
 
+	const handleSetCurrentHabit = (habit) =>{
+		setCurrentHabit(habit)
+	}
+
 	return (
 		<>
 			<Box
@@ -110,7 +118,10 @@ const HabitCard = ({ habit }) => {
 				height={350}
 				rounded={"18px"}
 				px={8}
-                onClick={onOpen}
+                onClick={()=>{
+					onOpen()
+					handleSetCurrentHabit(habit)
+					}}
                 cursor={"pointer"}
 			>
 				<Flex
@@ -142,6 +153,7 @@ const HabitCard = ({ habit }) => {
 			</Box>
 
             <Modal isOpen={isOpen} onClose={() => {
+				
 				onClose()
 				{isPickerOpen ? setIsPickerOpen(false) : isPickerOpen}
 				}} size={"md"}>
@@ -223,7 +235,7 @@ const HabitCard = ({ habit }) => {
 							<Text fontSize={"20px"} textAlign={"center"}>{habit.habitDescription}</Text>
 						</>
 						}
-							
+						<HabitCalendar habit={habit}/>
 						</Flex>
 					</ModalBody>
 

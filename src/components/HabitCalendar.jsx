@@ -3,26 +3,25 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Tick from "./icons/Tick";
 import Cross from "./icons/Cross";
+import useSubmitDates from "../hooks/useSubmitDates";
+import {Button} from "@chakra-ui/react"
+import useGetHabitDates from "../hooks/useGetHabitDates";
 
-const HabitCalendar = () => {
+const HabitCalendar = ({ habit }) => {
 	const [value, setValue] = useState(null);
 	const [dateLogs, setDateLogs] = useState([]);
+  const {submitDates, isSubmitting} = useSubmitDates();
+  const {dates , isFetching} = useGetHabitDates();
 
 	// Dates from database
-	const randomDateLogs = [
-		{ logDate: "2024-04-10", state: "done" },
-		{ logDate: "2024-04-17", state: "not-done" },
-		{ logDate: "2024-04-26", state: "done" },
-		{ logDate: "2024-04-12", state: "not-done" },
-		{ logDate: "2024-04-25", state: "done" },
-		{ logDate: "2024-04-29", state: "done" },
-		{ logDate: "2024-04-09", state: "not-done" },
-		{ logDate: "2024-04-05", state: "done" },
-	];
+
+  const handleDatesSubmit = async() => {
+    await submitDates(dateLogs, habit)
+  }
 
 	// Initialize dateLogs state with dates from randomDateLogs
 	useEffect(() => {
-		setDateLogs(randomDateLogs);
+		setDateLogs(dates);
 	}, []);
 
 	const formatDate = (date) => {
@@ -54,7 +53,6 @@ const HabitCalendar = () => {
 				{ logDate: formattedDate, state: "done" },
 			]);
 		}
-		console.log(dateLogs);
 	};
 
 	const tileIcon = ({ date, view }) => {
@@ -75,12 +73,15 @@ const HabitCalendar = () => {
 	};
 
 	return (
-		<Calendar
-			value={value}
-			locale="en-US"
-			onClickDay={handleDateClick}
-			tileContent={(props) => tileIcon(props)}
-		/>
+    <>
+      <Calendar
+        value={value}
+        locale="en-US"
+        onClickDay={handleDateClick}
+        tileContent={(props) => tileIcon(props)}
+      />
+      <Button onClick={()=> handleDatesSubmit()} isLoading={isSubmitting}>Submit</Button>
+    </>
 	);
 };
 
