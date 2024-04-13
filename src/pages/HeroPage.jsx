@@ -4,7 +4,7 @@ import HabitCalendar from "../components/HabitCalendar"
 const HeroPage = () => {
   return (
     <Flex w={"full"}>
-      <HabitCalendar/>
+    HeroPage
     </Flex>
   )
 }

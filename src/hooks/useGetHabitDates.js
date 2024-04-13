@@ -16,7 +16,7 @@ const useGetHabitDates = () => {
         const getDates = async () => {
             if(!authUser || !currentHabit) return
             setIsFetching(true)
-            console.log(currentHabit.id)
+
             try {
                 const q = query(
                     collection(firestore, "date-logs"),
@@ -39,7 +39,7 @@ const useGetHabitDates = () => {
             }
         }
         getDates()
-    }, [authUser, showToast, setDates] )
+    }, [authUser, showToast, setDates,currentHabit] )
     return {isFetching, dates}
 }
 

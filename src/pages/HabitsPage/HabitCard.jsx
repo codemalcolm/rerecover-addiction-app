@@ -17,7 +17,7 @@ import EmojiPicker from "emoji-picker-react";
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 import { auth, firestore } from "../../firebase/firebase";
-import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { QuerySnapshot, arrayRemove, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import useHabitStore from "../../store/habitStore";
@@ -60,10 +60,22 @@ const HabitCard = ({ habit }) => {
 	};
 
 	const handleDeleteHabit = async() => {
-		if(!window.confirm("Are you sure you want to delete this post ?")) return
+		if(!window.confirm("Are you sure you want to delete this habit ?")) return
 		if (isDeleting) return
 
 		try {
+
+			const dateQ = query(
+				collection(firestore, "date-logs"),
+				where("habitId", "==", habit.id)
+			)
+			
+			const dateQuerySnapshot = await getDocs(dateQ)
+			
+			for (const document of dateQuerySnapshot.docs) {
+				const docRef = doc(firestore, "date-logs", document.id);
+				await deleteDoc(docRef);
+			}
 
 			const userRef = doc(firestore, "users", authUser.uid)
 			await deleteDoc(doc(firestore, "habits", habit.id))
@@ -76,7 +88,7 @@ const HabitCard = ({ habit }) => {
 
             showToast("Success", "Habit deleted successfully", "success")
 		} catch (error) {
-			showToast("Error", error.message, "error");
+			showToast("Error", error.message + "here", "error");
 		}finally{
 			setIsDeleting(false)
 		}
