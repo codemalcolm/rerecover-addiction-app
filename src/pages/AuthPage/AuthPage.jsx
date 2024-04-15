@@ -1,10 +1,10 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import AuthForm from "./AuthForm";
 import { Link } from "react-router-dom";
 
 const AuthPage = () => {
 	return (
-		<Flex justifyContent={"center"} alignItems={"center"} flexDirection={"column"} my={"auto"}>
+		<Flex justifyContent={"center"} alignItems={"center"} flexDirection={"column"} my={40}>
 			<Flex
 				gap={5}
 				backgroundColor={"#f9f9f9"}
@@ -12,15 +12,25 @@ const AuthPage = () => {
 				justifyContent={"center"}
 				flexDirection={"column"}
 				alignItems={"center"}
-                py={"16px"}
+				py={40}
 			>
 			<Link to='/'>
-				<Text textAlign={"center"} fontSize={"38px"}>ReRecover</Text>
-        	</Link>
-               <AuthForm/>
+				<Text
+					textAlign={"center"}
+					fontSize={36}
+					fontFamily={"Eczar"}
+					fontWeight={700}
+					_hover={{color:"#545454"}}
+					transition={"0.1s ease-in-out"}
+				>
+					ReRecover
+				</Text>
+			</Link>
+			<AuthForm/>
 			</Flex>
-            
+			
 		</Flex>
+
 	);
 };
 

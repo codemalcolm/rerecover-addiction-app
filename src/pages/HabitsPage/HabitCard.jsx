@@ -88,7 +88,7 @@ const HabitCard = ({ habit }) => {
 
             showToast("Success", "Habit deleted successfully", "success")
 		} catch (error) {
-			showToast("Error", error.message + "here", "error");
+			showToast("Error", error.message, "error");
 		}finally{
 			setIsDeleting(false)
 		}
