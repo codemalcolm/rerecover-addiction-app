@@ -135,6 +135,7 @@ const HabitCard = ({ habit }) => {
 					handleSetCurrentHabit(habit)
 					}}
                 cursor={"pointer"}
+				mt={50}
 			>
 				<Flex
 					position={"relative"}

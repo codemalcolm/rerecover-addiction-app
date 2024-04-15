@@ -157,70 +157,69 @@ const Navbar = () => {
               }
             </Flex>
           </DrawerHeader>
-
 					<DrawerBody>
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"start"}
-              gap={0}
-              fontSize={22}
-              fontFamily={"Kanit"}
-              fontWeight={400}
-              letterSpacing={2}
-            >
-              <Link to="/habits">
-                <Box cursor={"pointer"} _hover={{color:"gray"}} onClick={onClose}>
-                  Habits
-                </Box>
-              </Link>
-              <Link to="/">
-                <Box cursor={"pointer"} _hover={{color:"gray"}} onClick={onClose}>
-                  Help
-                </Box>
-              </Link>
-              {!authUser && (
-                <Link to="/auth">
-                <Flex justifyContent={"center"} width={"100%"}>
-                  <Box
-                      cursor={"pointer"}
-                      border={"1px solid black"}
-                      backgroundColor={"black"}
-                      color={"white"}
-                      _hover={{ color: "black", background: "white" }}
-                      transition={"0.2s ease-in-out"}
-                      py={"4px"}
-                      px={"16px"}
-                      borderRadius={"32px"}
-                      fontSize={"22px"}
-                      onClick={onClose}
-                      mt={12}
-                    >
-                      Sign in
-                    </Box>
-                </Flex>
-                  
-                </Link>
-              )}
+						<Flex
+						flexDirection={"column"}
+						justifyContent={"center"}
+						alignItems={"start"}
+						gap={0}
+						fontSize={22}
+						fontFamily={"Kanit"}
+						fontWeight={400}
+						letterSpacing={2}
+						>
+						<Link to="/habits">
+							<Box cursor={"pointer"} _hover={{color:"gray"}} onClick={onClose}>
+							Habits
+							</Box>
+						</Link>
+						<Link to="/">
+							<Box cursor={"pointer"} _hover={{color:"gray"}} onClick={onClose}>
+							Help
+							</Box>
+						</Link>
+						{!authUser && (
+							<Link to="/auth">
+							<Flex justifyContent={"center"} width={"100%"}>
+							<Box
+								cursor={"pointer"}
+								border={"1px solid black"}
+								backgroundColor={"black"}
+								color={"white"}
+								_hover={{ color: "black", background: "white" }}
+								transition={"0.2s ease-in-out"}
+								py={"4px"}
+								px={"16px"}
+								borderRadius={"32px"}
+								fontSize={"22px"}
+								onClick={onClose}
+								mt={12}
+								>
+								Sign in
+								</Box>
+							</Flex>
+							
+							</Link>
+						)}
 
-              {authUser && (
-                <Flex justifyContent={"space-between"}>
-                
-                  <Box
-                    cursor={"pointer"}
-                    _hover={{ color: "red" }}
-                    transition={"0.2s ease-in-out"}
-                    onClick={() => {
-                      handleLogout
-                      onClose
-                      }}
-                  >
-                    Sign out
-                  </Box>
-                 
-                </Flex>
-              )}
-            </Flex>
+						{authUser && (
+							<Flex justifyContent={"space-between"}>
+							
+							<Box
+								cursor={"pointer"}
+								_hover={{ color: "red" }}
+								transition={"0.2s ease-in-out"}
+								onClick={() => {
+								handleLogout()
+								onClose()
+								}}
+							>
+								Sign out
+							</Box>
+							
+							</Flex>
+						)}
+						</Flex>
 
 					</DrawerBody>
 				</DrawerContent>

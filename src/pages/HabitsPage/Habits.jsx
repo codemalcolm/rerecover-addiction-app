@@ -2,8 +2,10 @@ import {
 	Box,
 	Button,
 	Flex,
+	Image,
 	Input,
 	Skeleton,
+	Text,
 	Textarea,
 	Tooltip,
 	VStack,
@@ -31,6 +33,8 @@ import EmojiImage from "./EmojiImage";
 import useCreateHabit from "../../hooks/useCreateHabit";
 import HabitCard from "./HabitCard";
 import useGetUserHabits from "../../hooks/useGetUserHabits";
+import searchingImage from "../../images/searching.svg";
+import "../../../fonts.css"
 
 const Habits = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,7 +69,8 @@ const Habits = () => {
 	return (
 		<>
 			<Flex justifyContent={"end"} mt={5}>
-				<Tooltip
+				{!habits.length === 0 && (
+					<Tooltip
 					hasArrow
 					label="Create a habit"
 					rounded={"4px"}
@@ -82,6 +87,8 @@ const Habits = () => {
 						/>
 					</Button>
 				</Tooltip>
+				)}
+				
 			</Flex>
 			{/* Create Habit Modal */}
 			<Modal isOpen={isOpen} onClose={onClose} size={"md"}>
@@ -153,9 +160,9 @@ const Habits = () => {
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
-			<Flex gap={3} >
+			<Flex gap={3} flexWrap={"wrap"} justifyContent={{ base: "center", md: habits.length > 0 ? "start" : "center"}}>
 				{isFetching &&
-					[0, 1, 2].map((_, idx) => (
+					[0,1,].map((_, idx) => (
 						<VStack key={idx} alignItems={"flex-start"} gap={3}>
 							<Skeleton w={"270px"}>
 								<Box h="300px">Contents wrapped</Box>
@@ -163,13 +170,37 @@ const Habits = () => {
 						</VStack>
 					))
 				}
-					{!isFetching && (
+					{(isFetching || habits.length > 0) ? (
 						<>
 						{habits.map((habit) => (
 							<HabitCard habit={habit} key={habit.id}/>
 						))}
 						</>
-					)}
+					): (
+						<>
+						<Flex width={"750px"} borderRadius={"16px"}  justifyContent={"center"} 
+						bgGradient='linear(to-l, gray.50, gray.200, gray.100, gray.200 ,gray.50)'>
+							<Image src={searchingImage} width={"350px"} height={"350px"} />
+							<Flex flexDirection={"column"} mb={"100px"}>
+								<Text 
+								width={"250px"} 
+								fontSize={"28px"}
+								fontFamily={"Merriweather Sans"}
+								wordSpacing={"6px"}
+								mt={"auto"}
+								mb={"16px"}
+								style={{
+									"word-spacing":"2px"
+								}}>
+									THERE ARE NO <span style={{color:"#4fb9dd"}}>HABITS</span> CREATED YET
+								</Text>
+								<Button borderRadius={"32px"} border={"1px solid black"}
+								onClick={onOpen}>Create your first Habit</Button>
+							</Flex>
+						</Flex>
+						</>
+					)
+					}
 			</Flex>
 		</>
 	);
