@@ -125,7 +125,7 @@ const HabitCard = ({ habit }) => {
 	return (
 		<>
 			<Box
-				border={"2px solid black"}
+				border={"3px solid black"}
 				width={270}
 				height={350}
 				rounded={"18px"}
@@ -143,7 +143,7 @@ const HabitCard = ({ habit }) => {
 					alignItems={"center"}
 				>
 					<Flex
-						border={"2px solid black"}
+						border={"3px solid black"}
 						width={"112px"}
 						height={"112px"}
 						rounded={"full"}
@@ -172,7 +172,10 @@ const HabitCard = ({ habit }) => {
 				}} size={"md"}>
 				<ModalOverlay />
 
-				<ModalContent rounded={"18px"} >
+				<ModalContent 
+				rounded={"18px"}
+				border={"2.5px solid black"}
+				maxHeight={770}>
 
 					<Flex
 						position={"relative"}
@@ -180,7 +183,7 @@ const HabitCard = ({ habit }) => {
 						alignItems={"center"}
 					>
 						<Flex
-							border={"2px solid black"}
+							border={"3px solid black"}
 							width={"112px"}
 							height={"112px"}
 							onClick={isEditOn ? () => setIsPickerOpen(!isPickerOpen) : null}
@@ -197,7 +200,7 @@ const HabitCard = ({ habit }) => {
 								}
 							/>
 						</Flex>
-						<Flex position={"fixed"} top={"18%"} left={"7%"} zIndex={9999}>
+						<Flex position={"fixed"} top={{base:"15%", md:"5%"}} left={{base:"5%", md:"27%"}} zIndex={9999}>
 							<EmojiPicker
 								position={"absolute"}
 								open={isPickerOpen}
@@ -217,7 +220,8 @@ const HabitCard = ({ habit }) => {
 							</Box>
 							<Box _hover={{color:"green"}} cursor={"pointer"}
 							color={isEditOn ? "green" : "black"}
-							onClick={() => setIsEditOn(!isEditOn)}>
+							onClick={() => {setIsEditOn(!isEditOn)
+							setIsPickerOpen(false)}}>
 								<FaPen style={{
 										width: "20px",
 										height:"20px"
@@ -232,14 +236,15 @@ const HabitCard = ({ habit }) => {
 						? 
 						<>
 							<Input
-								value={inputs.habitName || habit.habitName}
+								value={inputs.habitName || habit.habitName }
 								onChange={(e) => setInputs({ ...inputs, habitName: e.target.value })}
 								isReadOnly={!isEditOn}
 							/>
 							<Textarea
-								value={inputs.habitDescription || habit.habitDescription}
+								value={inputs.habitDescription || habit.habitDescription }
 								onChange={(e) =>setInputs({ ...inputs, habitDescription: e.target.value})}
 								isReadOnly={!isEditOn}
+								maxHeight={190}
 							/>
 						</>
 						:
