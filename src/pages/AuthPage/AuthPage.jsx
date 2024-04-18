@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import AuthForm from "./AuthForm";
 import { Link } from "react-router-dom";
 

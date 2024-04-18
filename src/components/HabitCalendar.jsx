@@ -25,8 +25,16 @@ const HabitCalendar = ({ habit }) => {
     if (!isFetching) {
       setDateLogs(dates);
       setAreDatesFetched(true);
+      console.log(dates)
     }
   }, [isFetching, dates]);
+
+  // TODO handleDayCount
+  const handleDayCount = async () => {
+    await dates
+    const datesSorted = dates.sort((a,b) => b.logDate - a.logDate)
+    console.log(datesSorted)
+  };
 
   // formating date into YYYY-MM-DD
   const formatDate = (date) => {
@@ -64,6 +72,7 @@ const HabitCalendar = ({ habit }) => {
   // Fill date contents logic
   const tileIcon = ({ date, view }) => {
     const formattedDate = formatDate(date);
+    
     const logEntry = dateLogs.find((log) => log.logDate === formattedDate);
     // if the view is month render ticks and crosses if it is not render nothing
     if (view === "month") {

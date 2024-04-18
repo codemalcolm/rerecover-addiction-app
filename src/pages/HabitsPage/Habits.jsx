@@ -198,6 +198,7 @@ const Habits = () => {
 					</>
 				) : (
 					<>
+					{/* No habits card */}
 						<Flex
 							width={"750px"}
 							borderRadius={"16px"}
