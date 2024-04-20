@@ -175,7 +175,8 @@ const HabitCard = ({ habit }) => {
 				<ModalContent 
 				rounded={"18px"}
 				border={"2.5px solid black"}
-				maxHeight={770}>
+				maxHeight={770}
+				userSelect={"none"}>
 
 					<Flex
 						position={"relative"}
@@ -200,7 +201,7 @@ const HabitCard = ({ habit }) => {
 								}
 							/>
 						</Flex>
-						<Flex position={"fixed"} top={{base:"15%", md:"5%"}} left={{base:"5%", md:"27%"}} zIndex={9999}>
+						<Flex position={"fixed"} top={{base:"15%", md:"15%"}} left={{base:"5%", md:"38.75%"}} zIndex={9999}>
 							<EmojiPicker
 								position={"absolute"}
 								open={isPickerOpen}
@@ -231,7 +232,7 @@ const HabitCard = ({ habit }) => {
 					</Flex>
 
 					<ModalBody display={"flex"} justifyContent={"center"}>
-						<Flex width={"250px"} flexDirection={"column"} gap={4}>
+						<Flex width={"280"} flexDirection={"column"} gap={4}>
 						{isEditOn 
 						? 
 						<>
@@ -253,7 +254,7 @@ const HabitCard = ({ habit }) => {
 							<Text fontSize={"20px"} textAlign={"center"}>{habit.habitDescription}</Text>
 						</>
 						}
-						<HabitCalendar habit={habit}/>
+						<HabitCalendar habit={habit} isEditOn={isEditOn}/>
 						</Flex>
 					</ModalBody>
 
@@ -263,7 +264,7 @@ const HabitCard = ({ habit }) => {
 							onClose()
 							handleEditHabit()
 							}}>
-							{isEditOn ? "Save" : "Submit"}
+							{isEditOn ? "Save Changes" : "Done"}
 						</Button>
 					</ModalFooter>
 				</ModalContent>

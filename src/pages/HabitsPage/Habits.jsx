@@ -91,17 +91,19 @@ const Habits = () => {
 				)}
 			</Flex>
 			{/* Create Habit Modal */}
-			<Modal isOpen={isOpen} onClose={onClose} size={"md"} >
+			<Modal isOpen={isOpen}
+			onClose={() => {onClose(); setIsPickerOpen(false);
+			}} size={"md"} >
 				<ModalOverlay />
 				<ModalContent minHeight={500} maxWidth={370}
-				border={"2px solid black"}>
+				border={"3px solid black"}>
 					<Flex
 						position={"relative"}
 						justifyContent={"center"}
 						alignItems={"center"}
 					>
 						<Flex
-							border={"2px solid black"}
+							border={"3px solid black"}
 							width={"112px"}
 							height={"112px"}
 							onClick={() => setIsPickerOpen(!isPickerOpen)}
@@ -123,7 +125,7 @@ const Habits = () => {
 								<EmojiImage imgURL={emojiImageUrl} />
 							)}
 						</Flex>
-						<Flex position={"fixed"} top={"18%"} left={"7%"} zIndex={9999}>
+						<Flex position={"fixed"} top={{base:"15%", md:"15%"}} left={{base:"5%", md:"38.75%"}} zIndex={9999}>
 							<EmojiPicker
 								open={isPickerOpen}
 								onEmojiClick={(e) => handleEmojiPick(e)}
