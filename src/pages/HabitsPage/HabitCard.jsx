@@ -153,7 +153,6 @@ const HabitCard = ({ habit }) => {
 						bg={"white"}
 						cursor={"pointer"}
 					>
-					{/* TODO update emoji state*/}
 						<Image src={habit.imageUrl} />
 					</Flex>
 				</Flex>
@@ -176,8 +175,8 @@ const HabitCard = ({ habit }) => {
 				rounded={"18px"}
 				border={"2.5px solid black"}
 				maxHeight={770}
-				userSelect={"none"}>
-
+				userSelect={"none"}
+				>
 					<Flex
 						position={"relative"}
 						justifyContent={"center"}
@@ -201,12 +200,14 @@ const HabitCard = ({ habit }) => {
 								}
 							/>
 						</Flex>
-						<Flex position={"fixed"} top={{base:"15%", md:"15%"}} left={{base:"5%", md:"38.75%"}} zIndex={9999}>
-							<EmojiPicker
-								position={"absolute"}
-								open={isPickerOpen}
-								onEmojiClick={(e) => handleEmojiPick(e)}
-							/>
+						<Flex position={"fixed"} top={{base:"15%", md:"15%"}} left="50%" transform="translateX(-50%)" zIndex={9999}>
+							<Box position="relative" height="100vh">
+								<EmojiPicker
+									position={"absolute"}
+									open={isPickerOpen}
+									onEmojiClick={(e) => handleEmojiPick(e)}
+								/>
+							</Box>
 						</Flex>
 					</Flex>
 
