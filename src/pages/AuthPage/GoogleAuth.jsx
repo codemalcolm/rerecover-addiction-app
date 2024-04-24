@@ -46,7 +46,7 @@ const GoogleAuth = ({ isLogin }) => {
 						height: "30px",
 					}}
 				/>
-				<Text>{isLogin ? "Login" : "Sign up"} with Google</Text>
+				<Text fontSize={{base:"16px", xl:"18px"}}>{isLogin ? "Login" : "Sign up"} with Google</Text>
 			</Flex>
 		</>
 	);

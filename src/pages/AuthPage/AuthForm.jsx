@@ -14,10 +14,10 @@ const AuthForm = () => {
         {isLogin ? <Login /> : <Register />}
                 
                 <Flex alignItems={"center"}>
-                    <Divider w={"100px"} color={"gray"}/><Text px={2.5}>OR</Text><Divider w={"100px"} color={"gray"}/>
+                    <Divider w={{base:"100px", xl:"130px"}} color={"gray"}/><Text px={2.5}>OR</Text><Divider w={{base:"100px", xl:"130px"}} color={"gray"}/>
                 </Flex>
 
-                <Flex justifyContent={"space-between"} alignItems={"center"} width={"205px"}>
+                <Flex justifyContent={"center"} alignItems={"center"} width={{base:"230px", xl:"260px"}}>
                     <GoogleAuth isLogin={isLogin}/>
                 </Flex>
 

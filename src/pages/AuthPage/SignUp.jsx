@@ -26,21 +26,21 @@ const SignUp = () => {
 				placeholder="Full Name"
 				value={inputs.fullName}
 				type="text"
-				size={"md"}
+				size={{base:"md", xl:"lg"}}
 				onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
 			/>
 			<Input
 				placeholder="Email"
 				value={inputs.email}
 				type="email"
-				size={"md"}
+				size={{base:"md", xl:"lg"}}
 				onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 			/>
 			<Input
 				placeholder="Password"
 				value={inputs.password}
 				type={showPassword ? "text" : "password"}
-				size={"md"}
+				size={{base:"md", xl:"lg"}}
 				onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 			/>
       		<InputGroup>
@@ -48,7 +48,7 @@ const SignUp = () => {
 					placeholder="Confirm Password"
 					value={inputs.confirmPassword}
 					type={showPassword ? "text" : "password"}
-					size={"md"}
+					size={{base:"md", xl:"lg"}}
 					onChange={(e) =>
 						setInputs({ ...inputs, confirmPassword: e.target.value })
 					}
@@ -56,7 +56,7 @@ const SignUp = () => {
 				<InputRightElement h="full">
 					<Button
 						variant={"ghost"}
-						size={"sm"}
+						size={"md"}
 						onClick={() => setShowPassword(!showPassword)}
 					>
 						{showPassword ? <ViewIcon /> : <ViewOffIcon />}
@@ -64,6 +64,7 @@ const SignUp = () => {
 				</InputRightElement>
 			</InputGroup>
       <Button w={"100%"}
+	  size={{base:"md", xl:"lg"}}
       isLoading={loading}
       onClick={() => signup(inputs)}>
       Sign up

@@ -16,21 +16,20 @@ const Login = () => {
 				placeholder="Email"
 				value={inputs.email}
 				type="email"
-				size={"md"}
+				size={{base:"md", xl:"lg"}}
 				onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 			/>
 			<InputGroup>
 				<Input
 					placeholder="Password"
 					value={inputs.password}
-					size={"md"}
+					size={{base:"md", xl:"lg"}}
 					onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 					type={showPassword ? "text" : "password"}
 				/>
 				<InputRightElement h="full">
 					<Button
 						variant={"ghost"}
-						size={"sm"}
 						onClick={() => setShowPassword(!showPassword)}
 					>
 						{showPassword ? <ViewIcon /> : <ViewOffIcon />}
@@ -38,6 +37,7 @@ const Login = () => {
 				</InputRightElement>
 			</InputGroup>
             <Button w={"100%"}
+			size={{base:"md", xl:"lg"}}
 			isLoading={loading} 
 			onClick={() => login(inputs)}
 			>Log in</Button>

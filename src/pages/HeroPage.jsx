@@ -2,6 +2,8 @@ import { Flex, Text, Box, Image } from "@chakra-ui/react";
 import HabitCalendar from "../components/HabitCalendar";
 
 import howToHabit from "../images/how-to-create-habit.png";
+import howToEdit from "../images/delete-habit.png"
+import howToEditMode from "../images/howto-edit-mode.png"
 const HeroPage = () => {
 	return (
 		<Flex justifyContent={"center"}>
@@ -62,7 +64,11 @@ const HeroPage = () => {
             </Text>
           </Flex>
           <Box>
-            <Image src={howToHabit} />
+            <Image src={howToEdit} />
+          </Box>
+
+          <Box>
+            <Image src={howToEditMode} />
           </Box>
         </Flex>
 			</Flex>
