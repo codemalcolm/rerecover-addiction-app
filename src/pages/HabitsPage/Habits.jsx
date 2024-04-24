@@ -125,7 +125,7 @@ const Habits = () => {
 								<EmojiImage imgURL={emojiImageUrl} />
 							)}
 						</Flex>
-						<Flex position={"fixed"} top={{base:"15%", md:"15%"}} left={{base:"5%", md:"38.75%"}} zIndex={9999}>
+						<Flex position={"fixed"} top={{base:"15%", md:"15%"}} left="50%" transform="translateX(-50%)" zIndex={9999}>
 							<EmojiPicker
 								open={isPickerOpen}
 								onEmojiClick={(e) => handleEmojiPick(e)}
