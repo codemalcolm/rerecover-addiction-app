@@ -28,7 +28,7 @@ const Navbar = () => {
 	const authUser = useAuthStore((state) => state.user);
 	return (
 		<Flex
-			border={"1px solid black"}
+			borderBottom={"1px solid black"}
 			justifyContent={"space-between"}
 			alignItems={"center"}
 			pl={5}

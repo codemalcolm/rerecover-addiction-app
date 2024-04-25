@@ -199,7 +199,11 @@ const Habits = () => {
 						))}
 					</>
 				) : (
-					<>
+					<Flex 
+					justifyContent={"center"}
+					alignItems={"center"}
+					height={"60vh"}
+					>
 					{/* No habits card */}
 						<Flex
 							width={"750px"}
@@ -245,7 +249,7 @@ const Habits = () => {
 								</Box>
 							</Flex>
 						</Flex>
-					</>
+					</Flex>
 				)}
 			</Flex>
 		</>

@@ -14,7 +14,6 @@ const HabitCalendar = ({ habit, isEditOn }) => {
 	const [dateLogs, setDateLogs] = useState([]);
 	const [areDatesFetched, setAreDatesFetched] = useState(false);
 	const { submitDates, isSubmitting } = useSubmitDates();
-	// custom hook for fetching
 	const { dates, isFetching } = useGetHabitDates();
 
 	// submitting new or updated logs
@@ -27,16 +26,9 @@ const HabitCalendar = ({ habit, isEditOn }) => {
 		if (!isFetching) {
 			setDateLogs(dates);
 			setAreDatesFetched(true);
-			console.log(dates);
+
 		}
 	}, [isFetching, dates]);
-
-	// TODO handleDayCount
-	const handleDayCount = async () => {
-		await dates;
-		const datesSorted = dates.sort((a, b) => b.logDate - a.logDate);
-		console.log(datesSorted);
-	};
 
 	// formating date into YYYY-MM-DD
 	const formatDate = (date) => {
