@@ -5,7 +5,6 @@ import AuthPage from "./pages/AuthPage/AuthPage"
 import Habits from "./pages/HabitsPage/Habits"
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "./firebase/firebase"
-import { Spinner } from "@chakra-ui/react"
 import LoadingPage from "./pages/LoadingPage"
 
 function App() {

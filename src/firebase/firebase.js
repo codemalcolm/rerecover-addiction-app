@@ -1,22 +1,27 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage"
+import { getStorage } from "firebase/storage";
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-	apiKey: import.meta.env.VITE_FIREBASE_apiKey,
-	authDomain: "rerecover-app.firebaseapp.com",
-	projectId: "rerecover-app",
-	storageBucket: "rerecover-app.appspot.com",
-	messagingSenderId: "749209873753",
-	appId: "1:749209873753:web:4ffdf7094ce004dc70f048",
-	measurementId: "G-RJSFBM85D1",
+	apiKey: "AIzaSyDm5vJwvu6iQ9s7POX33UGw2piPP-TolCM",
+	authDomain: "rerecover-bbdb0.firebaseapp.com",
+	projectId: "rerecover-bbdb0",
+	storageBucket: "rerecover-bbdb0.appspot.com",
+	messagingSenderId: "1011614995565",
+	appId: "1:1011614995565:web:8024d20054a47f1f99db64",
+	measurementId: "G-HG9C80SR2X",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
-const storage = getStorage(app)
+const storage = getStorage(app);
 
-export {app, auth, firestore, storage}
+export { app, auth, firestore, storage };
